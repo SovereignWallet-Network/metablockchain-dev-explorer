@@ -1,14 +1,15 @@
 export default {
     PeerId: 'Vec<u8>',
-    PublicSigningKey: 'Hash',
-    identifier: 'Vec<u8>',
-    public_key: 'Hash',
+    identifier: '[u8;32]',
+    public_key: '[u8;32]',
     metadata: 'Vec<u8>',
     DidStruct: {
-      identifier: 'Vec<u8>',
-      public_key: 'Hash',
-      metadata: 'Vec<u8>'
+      identifier: 'identifier',
+      public_key: 'public_key',
+      metadata: 'metadata'
     },
-    Address: 'AccountId',
-    LookupSource: 'AccountId'
+    Did: '[u8;32]',
+    PublicKey: '[u8;32]',
+    Address: 'MultiAddress',
+    LookupSource: 'MultiAddress',
 };
