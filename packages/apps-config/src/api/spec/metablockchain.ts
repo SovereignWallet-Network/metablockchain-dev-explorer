@@ -12,4 +12,10 @@ export default {
     PublicKey: '[u8;32]',
     Address: 'MultiAddress',
     LookupSource: 'MultiAddress',
+    TreasuryProposal: {
+      proposer: 'Did',
+      beneficiary: 'Did',
+      value: 'Balance',
+      bond: 'Balance'
+    },
 };
