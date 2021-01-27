@@ -18,4 +18,6 @@ export default {
       value: 'Balance',
       bond: 'Balance'
     },
+    CurrencyId: 'i64',
+    Amount: 'i64'
 };
