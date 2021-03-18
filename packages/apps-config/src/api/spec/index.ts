@@ -26,6 +26,7 @@ import stablePoc from './stable-poc';
 import stafi from './stafi';
 import subsocial from './subsocial';
 import metablockchain from './metablockchain';
+import temp from './temp';
 
 // mapping from specName in state.getRuntimeVersion
 export default {
@@ -59,5 +60,8 @@ export default {
   stable_poc: stablePoc,
   stafi,
   subsocial,
-  'metablockchain-runtime': metablockchain
+  'metablockchain-runtime': {
+    ...metablockchain,
+    ...temp
+  }
 };
