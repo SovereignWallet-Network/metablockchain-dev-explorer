@@ -6,7 +6,6 @@ import type { DeriveSessionProgress, DeriveStakingAccount, DeriveUnlocking } fro
 import BN from 'bn.js';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { BlockToTime, FormatBalance } from '@polkadot/react-query';
 import { BN_ONE, BN_ZERO, formatBalance, formatNumber } from '@polkadot/util';

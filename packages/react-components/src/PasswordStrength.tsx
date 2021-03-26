@@ -68,7 +68,6 @@ export default React.memo(styled(PasswordStrength)`
     border-radius: 0.15rem;
     background: #ECECEC;
   }
-
   .ui--Strength-bar-highlighted {
     position: absolute;
     top: -0.07rem;

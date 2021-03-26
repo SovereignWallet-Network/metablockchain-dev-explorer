@@ -156,7 +156,6 @@ function Queue ({ children }: Props): React.ReactElement<Props> {
     },
     []
   );
-
   const setTxQueue = useCallback(
     (tx: QueueTx[]): void => {
       txRef.current = tx;
@@ -186,7 +185,6 @@ function Queue ({ children }: Props): React.ReactElement<Props> {
     },
     [setTxQueue]
   );
-
   const queueAction = useCallback(
     (_status: ActionStatus | ActionStatus[]): void => {
       const status = Array.isArray(_status) ? _status : [_status];

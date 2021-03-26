@@ -6,7 +6,6 @@ import type { UInt } from '@polkadot/types';
 import BN from 'bn.js';
 import React from 'react';
 import styled from 'styled-components';
-
 import { bnToBn } from '@polkadot/util';
 
 interface Props {

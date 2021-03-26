@@ -3,7 +3,6 @@
 
 import BN from 'bn.js';
 import React, { useMemo } from 'react';
-
 import { Badge, Icon } from '@polkadot/react-components';
 import { useAccounts } from '@polkadot/react-hooks';
 

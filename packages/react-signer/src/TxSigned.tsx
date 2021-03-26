@@ -316,7 +316,6 @@ function TxSigned ({ className, currentItem, requestAddress }: Props): React.Rea
       setTimeout((): void => {
         const errorHandler = (error: Error): void => {
           console.error(error);
-
           setBusy(false);
           setError(error);
         };
