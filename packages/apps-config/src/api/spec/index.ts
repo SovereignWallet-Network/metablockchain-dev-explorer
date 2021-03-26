@@ -61,6 +61,8 @@ import unique from './unique';
 import vln from './vln';
 import zenlink from './zenlink';
 import zero from './zero';
+import metablockchain from './metablockchain';
+
 
 // NOTE: The mapping is done from specName in state.getRuntimeVersion
 const spec: Record<string, OverrideBundleDefinition> = {
@@ -130,7 +132,8 @@ const spec: Record<string, OverrideBundleDefinition> = {
   subzero: zero,
   ternoa,
   trustbase,
-  uniarts
+  uniarts,
+  'metablockchain-runtime':metablockchain
 };
 
 export default spec;
