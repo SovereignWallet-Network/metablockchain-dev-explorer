@@ -63,9 +63,9 @@ export function createDev (t: TFunction): LinkOption[] {
   return [
     {
       dnslink: 'local',
-      info: 'local',
-      text: t('rpc.local', 'Local Node', { ns: 'apps-config' }),
-      textBy: '127.0.0.1:9944',
+      info: 'metablockchain-runtime',
+      text: t('rpc.metablockchain', 'metablockchain-runtime Local', { ns: 'apps-config' }),
+      textBy: t('rpc.hosted.by', 'hosted by {{host}}', { ns: 'apps-config', replace: { host: 'Metablockchain' } }),
       value: 'ws://127.0.0.1:9944'
     }
   ];
