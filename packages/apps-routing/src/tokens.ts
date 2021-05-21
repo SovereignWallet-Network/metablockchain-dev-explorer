@@ -4,17 +4,18 @@
 import { TFunction } from 'i18next';
 import { Route } from './types';
 
-import Component from '@polkadot/app-storage';
+import Component from '@polkadot/app-extrinsics';
 
 export default function create (t: TFunction): Route {
   return {
     Component,
     display: {
+      needsAccounts: true,
       needsApi: []
     },
-    group: 'developer',
-    icon: 'database',
-    name: 'chainstate',
-    text: t('nav.storage', 'Query Chain', { ns: 'apps-routing' })
+    group: 'Token',
+    icon: 'envelope-open-text',
+    name: 'tokens',
+    text: t('nav.tokens', 'Token', { ns: 'apps-routing' })
   };
 }

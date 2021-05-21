@@ -4,7 +4,7 @@
 import { SubmittableExtrinsicFunction } from '@polkadot/api/types';
 import { DropdownOptions } from '../util/types';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useApi } from '@polkadot/react-hooks';
 
 import LinkedWrapper from './LinkedWrapper';
@@ -23,14 +23,22 @@ interface Props {
   label: React.ReactNode;
   onChange: (value: SubmittableExtrinsicFunction<'promise'>) => void;
   withLabel?: boolean;
+  routeName?: string;
 }
 
-function InputExtrinsic ({ className = '', defaultValue, help, label, onChange, withLabel }: Props): React.ReactElement<Props> {
+function InputExtrinsic ({ className = '', defaultValue, help, label, onChange, withLabel, routeName = '' }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const [optionsMethod, setOptionsMethod] = useState<DropdownOptions>(methodOptions(api, defaultValue.section));
   const [optionsSection] = useState<DropdownOptions>(sectionOptions(api));
   const [value, setValue] = useState<SubmittableExtrinsicFunction<'promise'>>((): SubmittableExtrinsicFunction<'promise'> => defaultValue);
 
+  useEffect(() => {
+    const section = routeName.includes('did') ? 'did' : 'tokens'
+    const optionsMethod = methodOptions(api, section);
+
+    setOptionsMethod(optionsMethod);
+    _onKeyChange(api.tx[section][optionsMethod[0].value]);
+  }, [routeName])
   const _onKeyChange = useCallback(
     (newValue: SubmittableExtrinsicFunction<'promise'>): void => {
       if (value.section === newValue.section && value.method === newValue.method) {
@@ -49,7 +57,7 @@ function InputExtrinsic ({ className = '', defaultValue, help, label, onChange, 
       if (section === value.section) {
         return;
       }
-
+      
       const optionsMethod = methodOptions(api, section);
 
       setOptionsMethod(optionsMethod);
@@ -68,7 +76,7 @@ function InputExtrinsic ({ className = '', defaultValue, help, label, onChange, 
       <SelectSection
         className='small'
         onChange={_onSectionChange}
-        options={optionsSection}
+        options={optionsSection.filter(option => option.text?.toString().includes(routeName))}
         value={value}
       />
       <SelectMethod

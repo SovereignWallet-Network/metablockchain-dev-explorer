@@ -26,7 +26,7 @@ function ExtrinsicsApp ({ basePath }: Props): React.ReactElement<Props> {
           items={itemsRef.current}
         />
       </header>
-      <Selection />
+      <Selection routeName={basePath} />
     </main>
   );
 }

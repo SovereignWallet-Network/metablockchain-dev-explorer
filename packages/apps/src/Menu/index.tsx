@@ -19,8 +19,8 @@ import { findMissingApis } from '../endpoint';
 import { useTranslation } from '../translate';
 import ChainInfo from './ChainInfo';
 import Grouping from './Grouping';
-import Item from './Item';
-import NodeInfo from './NodeInfo';
+// import Item from './Item';
+// import NodeInfo from './NodeInfo';
 
 interface Props {
   className?: string;
@@ -28,12 +28,12 @@ interface Props {
 
 const disabledLog = new Map<string, string>();
 
-function createExternals (t: TFunction): ItemRoute[] {
-  return [
-    { href: 'https://github.com/polkadot-js/apps', icon: 'code-branch', name: 'github', text: t<string>('nav.github', 'GitHub', { ns: 'apps-routing' }) },
-    { href: 'https://wiki.polkadot.network', icon: 'book', name: 'wiki', text: t<string>('nav.wiki', 'Wiki', { ns: 'apps-routing' }) }
-  ];
-}
+// function createExternals (t: TFunction): ItemRoute[] {
+//   return [
+//     { href: 'https://github.com/polkadot-js/apps', icon: 'code-branch', name: 'github', text: t<string>('nav.github', 'GitHub', { ns: 'apps-routing' }) },
+//     { href: 'https://wiki.polkadot.network', icon: 'book', name: 'wiki', text: t<string>('nav.wiki', 'Wiki', { ns: 'apps-routing' }) }
+//   ];
+// }
 
 function logDisabled (route: string, message: string): void {
   if (!disabledLog.get(route)) {
@@ -94,7 +94,7 @@ function Menu ({ className = '' }: Props): React.ReactElement<Props> {
   const sudoKey = useCall<AccountId>(apiProps.isApiReady && apiProps.api.query.sudo?.key);
   const location = useLocation();
 
-  const externalRef = useRef(createExternals(t));
+  // const externalRef = useRef(createExternals(t));
 
   const groupRef = useRef({
     accounts: t('Accounts'),
@@ -122,7 +122,6 @@ function Menu ({ className = '' }: Props): React.ReactElement<Props> {
   );
 
   const isLoading = !apiProps.isApiReady || !apiProps.isApiConnected;
-
   return (
     <div className={`${className}${isLoading ? ' isLoading' : ''} highlight--bg`}>
       <div className='menuSection'>
@@ -134,16 +133,20 @@ function Menu ({ className = '' }: Props): React.ReactElement<Props> {
           </div>
         )}
         <ul className='menuItems'>
-          {visibleGroups.map(({ name, routes }): React.ReactNode => (
-            <Grouping
-              key={name}
-              name={name}
-              routes={routes}
-            />
-          ))}
+          {visibleGroups.map(({ name, routes }): React.ReactNode => 
+            {
+              return (
+                <Grouping
+                  key={name}
+                  name={name}
+                  routes={routes.filter(route => route.text !== activeRoute?.text)}
+                />
+              )
+            }
+          )}
         </ul>
       </div>
-      <div className='menuSection media--1200'>
+      {/* <div className='menuSection media--1200'>
         <ul className='menuItems'>
           {externalRef.current.map((route): React.ReactNode => (
             <Item
@@ -153,8 +156,8 @@ function Menu ({ className = '' }: Props): React.ReactElement<Props> {
             />
           ))}
         </ul>
-      </div>
-      <NodeInfo />
+      </div> */}
+      {/* <NodeInfo /> */}
     </div>
   );
 }

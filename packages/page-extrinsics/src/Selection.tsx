@@ -10,8 +10,9 @@ import { BalanceFree } from '@polkadot/react-query';
 
 import { useTranslation } from './translate';
 
-function Selection (): React.ReactElement {
+function Selection (props: any): React.ReactElement {
   const { t } = useTranslation();
+  const { routeName } = props;
   const { apiDefaultTxSudo } = useApi();
   const [accountId, setAccountId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +43,7 @@ function Selection (): React.ReactElement {
       />
       <Extrinsic
         defaultValue={apiDefaultTxSudo}
+        routeName={routeName.replace(/\\|\//g,'')}
         label={t<string>('submit the following extrinsic')}
         onChange={_onExtrinsicChange}
         onError={_onExtrinsicError}
