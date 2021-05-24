@@ -13,9 +13,9 @@ export default function create (t: TFunction): Route {
       needsAccounts: true,
       needsApi: []
     },
-    group: 'developer',
+    group: 'DID',
     icon: 'envelope-open-text',
-    name: 'extrinsics',
-    text: t('nav.extrinsics', 'Extrinsics', { ns: 'apps-routing' })
+    name: 'did',
+    text: t('nav.did', 'DID', { ns: 'apps-routing' })
   };
 }

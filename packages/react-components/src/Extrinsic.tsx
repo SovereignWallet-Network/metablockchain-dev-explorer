@@ -26,6 +26,7 @@ interface Props {
   onError?: (error?: Error | null) => void;
   onEscape?: () => void;
   withLabel?: boolean;
+  routeName?: string;
 }
 
 interface CallState {
@@ -43,10 +44,10 @@ function getParams ({ meta }: SubmittableExtrinsicFunction<'promise'>): { name: 
   }));
 }
 
-function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
+function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel, routeName }: Props): React.ReactElement<Props> {
   const [extrinsic, setCall] = useState<CallState>({ fn: defaultValue, params: getParams(defaultValue) });
   const [values, setValues] = useState<RawParam[]>([]);
-
+  
   useEffect((): void => {
     setValues([]);
   }, [extrinsic]);
@@ -80,11 +81,12 @@ function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label
   );
 
   const { fn: { meta, method, section }, params } = extrinsic;
-
+  
   return (
     <div className='extrinsics--Extrinsic'>
       <InputExtrinsic
         defaultValue={defaultValue}
+        routeName={routeName}
         help={meta?.documentation.join(' ')}
         isDisabled={isDisabled}
         isError={isError}
